@@ -1,0 +1,14 @@
+https://blog.csdn.net/qq_63105690/article/details/142036110
+[关于React Native初次启动项目时出现的下载过慢问题及其他问题解决]
+
+<=------------> 11% EXECUTING [10m 5s]
+> :app:checkDebugAarMetadata > Resolve files of configuration ':app:debugRuntimeClasspath' > react-android-0.76.3-debug.aar > 9.6 MiB/195.2 MiB downloaded
+> :app:checkDebugAarMetadata > Resolve files of configuration ':app:debugRuntimeClasspath' > hermes-android-0.76.3-debug.aar > 9.2 MiB/92.8 MiB downloaded
+
+https://repo.maven.apache.org/maven2/com/facebook/react/react-android/0.76.3/
+https://repo.maven.apache.org/maven2/com/facebook/react/hermes-android/0.76.3/
+
+放到gradle文件夹（默认在c盘的用户文件夹中）下的
+caches\modules-2\files-2.1\com.facebook.react\react-android\0.75.2\ab07a0a8b9014a36ded3cf03258459b916a07483 
+caches\modules-2\metadata-2.106\descriptors\com.facebook.react\hermes-android\0.75.2\26c913274550a0b2221f47a0fe2d2358
+再次重新启动应用，发现应用成功下载到手机，启动成功（放到和module文件相同的文件夹下）
