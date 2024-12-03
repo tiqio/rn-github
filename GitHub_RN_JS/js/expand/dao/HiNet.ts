@@ -1,4 +1,5 @@
 import Constants from './Constants'
+import {getBoarding} from "../../util/BoardingUtil";
 /**
  * 发送get请求
  * @param api 要请求的接口
@@ -9,11 +10,13 @@ export function get(api: string) {
    * params get请求的参数
    */
   return async (params?: {}) => {
+    const boarding = await getBoarding();
     const { headers, url } = Constants;
     return handleData(fetch(buildParams(url + api, params),
       {
         headers: {
           ...headers,
+          'boarding-pass': boarding || ''
         }
       }
     ))
@@ -25,6 +28,7 @@ export function post(api: string) {
    */
   return (params: {}) => {
     return async (queryParams?: {} | string) => {
+      const boarding = await getBoarding();
       const { headers, url } = Constants;
       var data, cType;
       if (params instanceof FormData) {
@@ -41,6 +45,7 @@ export function post(api: string) {
           headers: {
             'content-type': cType,
             ...headers,
+            'boarding-pass': boarding || ''
           }
         }
       ))
