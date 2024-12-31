@@ -8,6 +8,7 @@ import MyPage from '../page/MyPage';
 import Entypo from 'react-native-vector-icons/Entypo'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import Ionicons from "react-native-vector-icons/Ionicons";
+import { connect } from 'react-redux';
 
 const Tab = createBottomTabNavigator();
 
@@ -56,11 +57,12 @@ const TABS = {
     },
 };
 
-export default class DynamicTabNavigator extends Component {
+class DynamicTabNavigator extends Component {
     _tabNavigator() {
         const {PopularPage, TrendingPage, FavoritePage, MyPage} = TABS;
         const tabs = {PopularPage, TrendingPage, FavoritePage, MyPage}; //根据需要定制显示的tab
         // PopularPage.navigationOptions.tabBarLabel = '最热'; //动态配置Tab属性
+        const themeColor = this.props.theme.themeColor || this.props.theme;
         return (
             <Tab.Navigator>
                 {Object.entries(tabs).map((item) => {
@@ -69,7 +71,7 @@ export default class DynamicTabNavigator extends Component {
                             key={item[0]}
                             name={item[0]}
                             component={item[1].screen}
-                            options={item[1].navigationOptions}
+                            options={{...(item[1].navigationOptions), tabBarActiveTintColor: themeColor}}
                         />
                     )
                 })}
@@ -81,3 +83,8 @@ export default class DynamicTabNavigator extends Component {
         return Tab;
     }
 }
+
+const mapStateToProps = (state) => ({
+    theme: state.theme.theme
+});
+export default connect(mapStateToProps)(DynamicTabNavigator);

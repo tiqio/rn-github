@@ -24,7 +24,6 @@ class TrendingTab extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 40,
         backgroundColor: '#2196f3',
     }
 })
