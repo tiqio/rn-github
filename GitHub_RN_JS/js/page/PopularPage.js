@@ -4,6 +4,7 @@ import { tabNav } from "../navigator/NavigationDelegate";
 import keys from '../res/data/keys.json'
 import actions from '../action'
 import { connect } from "react-redux";
+import PopularItem from "../common/PopularItem";
 
 const URL = 'https://api.github.com/search/repositories?q=';
 const QUERY_STR = '&sort=stars';
@@ -50,11 +51,7 @@ class PopularTab extends Component {
     }
     renderItem(data) {
         const item = data.item;
-        return <View style={{marginBottom: 10}}>
-            <Text style={{backgroundColor: '#faa'}}>
-                {JSON.stringify(item)}
-            </Text>
-        </View>
+        return <PopularItem item={item} onSelect={() => {}} />
     }
     render() {
         const {popular} = this.props;
