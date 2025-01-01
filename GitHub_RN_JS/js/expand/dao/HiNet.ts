@@ -67,7 +67,6 @@ function handleData(doAction: Promise<any>) {
       }
       return res.text();
     }).then((result) => {
-      console.log(JSON.stringify(result));
       if (typeof result === 'string') {
         throw new Error(result);
       }
