@@ -112,18 +112,21 @@ class PopularTab extends Component {
                     // 有一个问题, FlatList会多次调用onEndReached
                     onEndReached={() => {
                         console.log('-----onEndReached-----')
-                        if (this.canLoadMore) {
-                            this.loadData(true);
-                            this.canLoadMore = false;
-                        }
-                        // this.loadData(true);
+                        // 设置经验值确保onEndReached在onMomentumScrollBegin后执行
+                        // setTimeout(() => {
+                        //     if (this.canLoadMore) {
+                        //         this.loadData(true);
+                        //         this.canLoadMore = false;
+                        //     }
+                        // }, 100)
+                        this.loadData(true);
                     }}
                     onEndReachedThreshold={0.5}
                     // 一次滚动时仅允许调用一次this.loadData(true)
-                    onMomentumScrollBegin={() => {
-                        this.canLoadMore = true;
-                        console.log('-----onMomentumScrollBegin-----')
-                    }}
+                    // onMomentumScrollBegin={() => {
+                    //     this.canLoadMore = true;
+                    //     console.log('-----onMomentumScrollBegin-----')
+                    // }}
                 />
                 <Toast ref={(toast) => {this.toast = toast}}
                     position={'center'}
