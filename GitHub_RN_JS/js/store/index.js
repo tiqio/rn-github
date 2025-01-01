@@ -12,7 +12,8 @@ const logger = (store) => (next) => (action) => {
     if (typeof action === 'function') {
         console.log('dispatching a function');
     } else {
-        console.log('dispatching ', action);
+        // console.log('dispatching ', action);
+        console.log('dispatching ', action.type);
     }
     const result = next(action);
     console.log('nextState ', store.getState());
